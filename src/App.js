@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'; // Make sure useEffect is im
 import axios from 'axios';
 import './index.css';
 
-
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 function App() {
   const [alert, setAlert] = useState(false);
@@ -43,7 +43,7 @@ function App() {
     setAlert(false); // Reset previous alert
   
     try {
-      const res = await axios.post('https://relationship-ai-backend.onrender.com/chat', {
+      const res = await axios.post(`${BASE_URL}/chat`, {
         message,
         phase
       });
@@ -56,7 +56,7 @@ function App() {
       setResponse(aiReply);
       setAlert(alertFlag); // ✅ Set once only!
   
-      const analysisRes = await axios.post('https://relationship-ai-backend.onrender.com/analyze', { message });
+      const analysisRes = await axios.post(`${BASE_URL}/analyze`, { message });
 
   
       const sentiment = analysisRes.data.sentiment;
@@ -230,7 +230,7 @@ function App() {
       }}
       
         onClick={async () => {
-          const res = await axios.post('https://relationship-ai-backend.onrender.com/summarize', { history: chatHistory });
+          const res = await axios.post(`${BASE_URL}/summarize`, { history: chatHistory });
           setSummary(res.data.summary); 
         }}
       >
