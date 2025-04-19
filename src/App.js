@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'; // Make sure useEffect is im
 import axios from 'axios';
 import './index.css';
 
-const BASE_URL = import.meta.env.VITE_API_URL;
+const BASE_URL = "https://relationship-ai-backend-1.onrender.com";
 
 function App() {
   const [alert, setAlert] = useState(false);
